@@ -1,0 +1,11 @@
+---
+- name: testing windows
+  hosts: windows
+  become: true
+  
+  tasks:
+    - name: create dir
+      ansible.windows.win_file:
+            path: C:\ansible\sample
+            state: directory
+...
