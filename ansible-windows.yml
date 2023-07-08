@@ -1,11 +1,12 @@
 ---
 - name: testing windows
-  hosts: windows
+  hosts: windows-win
+  become_user: credence2
   become: true
   
   tasks:
     - name: create dir
-      ansible.windows.win_file:
-            path: C:\ansible\sample
+      win_file:
+            path: C:\Users\credence2\Documents\sample
             state: directory
 ...
