@@ -1,6 +1,6 @@
 ---
 - name: testing windows
-  hosts: windows-win
+  hosts: 10.10.5.187
   become_user: credence2
   become: true
   
