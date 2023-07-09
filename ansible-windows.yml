@@ -1,9 +1,9 @@
 ---
 - name: testing windows
   hosts: 10.10.5.187
-  gather_facts: false
-  become_user: credence2
-  become: true
+ # gather_facts: false
+ # become_user: credence2
+#  become: true
   
   tasks:
     - name: create dir
