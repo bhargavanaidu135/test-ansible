@@ -10,7 +10,7 @@
      win_chocolatey:
        name: jdk11
        state: present
-       version: latest
+       version: 11
 
    - name: Set Java_home
      win_environment:
