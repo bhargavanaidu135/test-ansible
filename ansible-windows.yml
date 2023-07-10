@@ -12,19 +12,19 @@
   #      state: present
    - name: download java bin
      win_get_url:
-         url: https://download.oracle.com/java/20/latest/jdk-20_windows-x64_bin.exe
+         url: https://download.oracle.com/java/11/latest/jdk-11_windows-x64_bin.exe
          dest: C:\Users\credence2\Documents\
      #    force: true
    - name: install java
      win_environment:
        state: present
        name: JAVA_HOME
-       value: 'C:\Program Files\Java\jdk-20'
+       value: 'C:\Program Files\Java\jdk-11'
        level: machine
    - name: Add Java to path
      win_path:
         elements:
-          - 'C:\Program Files\Java\jdk-20\bin'
+          - 'C:\Program Files\Java\jdk-11\bin'
     # win_shell: |
      #    cd C:\Users\credence2\Documents\
       #   .\jdk-20_windows-x64_bin.exe
