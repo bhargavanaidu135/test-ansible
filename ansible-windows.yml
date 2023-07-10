@@ -8,7 +8,7 @@
   tasks:
    - name: Install Java
      win_chocolatey:
-       name: "{{ jdk_package }}"
+       name: "jdk11"
        state: present
        version: "{{ java_major_version }}.{{ java_minor_version }}"
 
