@@ -1,13 +1,13 @@
 ---
 - name: testing windows
-  hosts: 10.10.5.195
+  hosts: all
   #gather_facts: false
-  become_user: inndata-kap-5
-  become: true
+  #become_user: inndata-kap-5
+  #become: true
   
   tasks:
    - name: test create dir
      win_file:
-        path: C:\Users\inndata-kap-5\sample-data
-        state: absent
+        path: C:\Users\sample-data
+        state: directory
 ...  
