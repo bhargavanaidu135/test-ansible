@@ -6,12 +6,12 @@
   become: true
   
   tasks:
-   - name: Install git
-     win_chocolatey:
-        name: git
-        state: present
-   - name: Install Tomcat with Chocolatey
-     win_chocolatey:
-         name: tomcat
-         state: present
-         version: '8.5.12'
+  # - name: Install git
+  #   win_chocolatey:
+  #      name: git
+  #      state: present
+   - name: download java bin
+     win_get_url:
+         url: https://download.oracle.com/java/20/latest/jdk-20_windows-x64_bin.exe
+         dest: c:\ansible\
+...
