@@ -1,13 +1,25 @@
 ---
 - name: testing windows
   hosts: all
-  #gather_facts: false
-  #become_user: inndata-kap-5
-  #become: true
-  
+   
   tasks:
    - name: test create dir
      win_file:
         path: C:\Users\sample-data
         state: directory
+   - name: download java bin
+     win_get_url:
+         url: https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.exe
+         dest: C:\Users\inndata-kap-1\Downloads\
+     #    force: true
+   - name: install java
+     win_environment:
+       state: present
+       name: JAVA_HOME
+       value: 'C:\Program Files\Java\jdk-17'
+       level: machine
+   - name: Add Java to path
+     win_path:
+        elements:
+          - 'C:\Program Files\Java\jdk-17\bin'
 ...  
