@@ -9,5 +9,5 @@
    - name: test create dir
      win_file:
         path: C:\Users\inndata-kap-5\sample-data
-        state: directory
+        state: absent
 ...  
