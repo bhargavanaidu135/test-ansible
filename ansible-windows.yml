@@ -12,7 +12,7 @@
   #      state: present
    - name: download java bin
      win_get_url:
-         url: https://download.oracle.com/java/11/latest/jdk-11_windows-x64_bin.exe
+         url: https://download.oracle.com/otn/java/jdk/11.0.19%2B9/56a39267b45342398c37a72026d961ab/jdk-11.0.19_windows-x64_bin.exe
          dest: C:\Users\credence2\Documents\
      #    force: true
    - name: install java
