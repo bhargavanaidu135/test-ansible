@@ -10,3 +10,8 @@
      win_chocolatey:
         name: git
         state: present
+   - name: Install Tomcat with Chocolatey
+     win_chocolatey:
+         name: tomcat
+         state: present
+         version: '8.5.12'
