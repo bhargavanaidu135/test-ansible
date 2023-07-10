@@ -13,5 +13,5 @@
    - name: download java bin
      win_get_url:
          url: https://download.oracle.com/java/20/latest/jdk-20_windows-x64_bin.exe
-         dest: c:\ansible\
+         dest: C:\Users\credence2\Documents\
 ...
