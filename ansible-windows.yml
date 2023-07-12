@@ -2,14 +2,9 @@
 - name: testing windows
   hosts: 10.10.5.192
   tasks:
-   - win_shell: install-packageprovider -name nuget -force
-   - name: "Install GroupPolicyDSC"
-     win_psmodule:
-        name: GroupPolicyDSC
-        state: present
-   - name: "Create GPO"
-     win_dsc:
-        resource_name: GroupPolicy
-        name: "ExampleGPO"
-        status: allsettingsenabled
-        ensure: present
+   - win_shell: |
+     https://github.com/prometheus-community/windows_exporter/releases/download/v0.22.0/windows_exporter-0.22.0-amd64.exe
+
+     Start-Process C:\Users\CREDENCE\Downloads\windows_exporter-0.22.0-386.exe -PassThru
+
+     service.msc start windows_exporter
