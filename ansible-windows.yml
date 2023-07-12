@@ -1,6 +1,6 @@
 ---
 - name: testing windows
-  hosts: all
+  hosts: 10.10.5.192
   tasks:
    - win_shell: install-packageprovider -name nuget -force
    - name: "Install GroupPolicyDSC"
