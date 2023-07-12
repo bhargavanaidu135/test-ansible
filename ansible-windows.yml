@@ -9,5 +9,6 @@
        win_shell: |       
          Start-Process C:\Users\CREDENCE\Downloads\windows_exporter-0.22.0-amd64.exe -PassThru
      - name: start windows exporter
-       win_shell: |
-         service.msc start windows_exporter
+       win_shell: service.msc start windows_exporter
+       args:
+         chdir: C:\Users\CREDENCE\Downloads\
