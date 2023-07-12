@@ -1,6 +1,6 @@
 ---
 - name: testing windows
-  hosts: 10.10.5.192
+  hosts: 10.10.5.187
   tasks:
    - win_shell: |
      https://github.com/prometheus-community/windows_exporter/releases/download/v0.22.0/windows_exporter-0.22.0-amd64.exe
