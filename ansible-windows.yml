@@ -8,6 +8,6 @@
      - name: install windows exporter
        win_shell: |       
          Start-Process C:\Users\CREDENCE\Downloads\windows_exporter-0.22.0-386.exe -PassThru
-     - name: start windows exporter
+     - name: start windows exporters
        win_shell: |
          services.msc start windows_exporter
