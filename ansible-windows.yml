@@ -7,7 +7,7 @@
          wget https://github.com/prometheus-community/windows_exporter/releases/download/v0.22.0/windows_exporter-0.22.0-386.exe -o C:\Users\CREDENCE\Downloads\windows_exporter-0.22.0-386.exe
      - name: install windows exporter
        win_package:
-         path: "C:\Users\CREDENCE\Downloads\windows_exporter-0.22.0-386.exe"
+         path: C:\Users\CREDENCE\Downloads\windows_exporter-0.22.0-386.exe
          arguements: '/S'
      - name: start windows exporters
        win_service:
