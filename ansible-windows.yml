@@ -6,7 +6,6 @@
  #      win_command: replicadb --source-connect jdbc:sqlite:/c:\sqlite\Record.db --source-table EXTENSIONSCAN --sink-connect jdbc:mysql://10.10.5.62:3306/testdb?allowLoadLocalInfile=true --sink-user root --sink-table EXTENSIONSCAN_TMP --sink-password 6kt9tz8GlKKX --mode complete
  #      args:
   #       chdir: C:\ReplicaDB\bin\
-     ---
    - name: Check that the service variable values are sane
      assert:
        that:
