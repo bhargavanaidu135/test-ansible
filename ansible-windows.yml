@@ -41,7 +41,7 @@
      notify: restart windows_exporter
 
    - name: windows_exporter service settings
-     ansible.windows.win_service:
+     win_service:
        name: windows_exporter
        start_mode: "{{ windows_exporter_start_mode }}"
        state: "{{ windows_exporter_state }}"
