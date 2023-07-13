@@ -34,8 +34,8 @@
         or not windows_exporter_installed_check.stat.exists
      register: windows_exporter_download_check
 
-  - name: install Windows exporter
-    win_package:
+   - name: install Windows exporter
+     win_package:
       path: '{{ ansible_env.TEMP }}\windows_exporter_install.msi'
       state: present
       arguments: "{{ windows_exporter_options }}"
