@@ -7,17 +7,6 @@
  #      args:
   #       chdir: C:\ReplicaDB\bin\
 
-   - name: Check current windows_exporter version.
-     win_command: "{{ windows_exporter_bin_path }} --version"
-     failed_when: false
-     changed_when: false
-     register: windows_exporter_version_check
-
-   - name: Check if windows_exporter is already installed
-     win_stat: 
-       path: "{{ windows_exporter_bin_path }}"
-     register: windows_exporter_installed_check
-
    - name: Download windows_exporter
      win_get_url:
       url: "{{ windows_exporter_download_url }}"
