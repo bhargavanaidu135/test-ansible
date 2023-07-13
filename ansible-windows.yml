@@ -38,12 +38,12 @@
       path: '{{ ansible_env.TEMP }}\windows_exporter_install.msi'
       state: present
       arguments: "{{ windows_exporter_options }}"
-    when: >
+     when: >
       windows_exporter_version_check.stderr is not defined
       or windows_exporter_version not in windows_exporter_version_check.stderr
       or not windows_exporter_installed_check.stat.exists
-    register: windows_exporter_install_check
-    notify: restart windows_exporter
+     register: windows_exporter_install_check
+     notify: restart windows_exporter
 
    - name: windows_exporter service settings
      ansible.windows.win_service:
@@ -52,12 +52,12 @@
        state: "{{ windows_exporter_state }}"
 
    - name: Verify windows_exporter is responding to requests.
-      win_uri:
+     win_uri:
         url: http://localhost:9182/
         return_content: true
         register: metrics_output
         failed_when: "'Metrics' not in metrics_output.content"
-      when:
+     when:
        - windows_exporter_start_mode != 'disabled'
        - windows_exporter_start_mode != 'manual'
        - windows_exporter_state == 'started' or windows_exporter_state == 'restarted'
