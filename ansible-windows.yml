@@ -9,8 +9,8 @@
    - name: Check that the service variable values are sane
      assert:
        that:
-        - windows_exporter_state == 'started' and windows_exporter_start_mode != 'disabled'
-    fail_msg: "You cannot manage the service with the windows_exporter_state and windows_exporter_start_mode settings"
+         - windows_exporter_state == 'started' and windows_exporter_start_mode != 'disabled'
+     fail_msg: "You cannot manage the service with the windows_exporter_state and windows_exporter_start_mode settings"
 
    - name: Check current windows_exporter version.
      win_command: "{{ windows_exporter_bin_path }} --version"
