@@ -1,6 +1,8 @@
 ---
 - name: testing windows
   hosts: 10.10.5.192
+  become: true
+  become_user: root
   tasks:
     - name: from an Ansible Playbook
       win_ping:
