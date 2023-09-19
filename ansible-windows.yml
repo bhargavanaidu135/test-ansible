@@ -14,8 +14,8 @@
       state: present
    #   arguments: "{{ windows_exporter_options }}"
    
-   - name: windows_exporter service settings
-     win_service:
-       name: windows_exporter
-       start_mode: "{{ windows_exporter_start_mode }}"
-       state: "{{ windows_exporter_state }}"
+   # - name: windows_exporter service settings
+   #   win_service:
+   #     name: windows_exporter
+   #     start_mode: "{{ windows_exporter_start_mode }}"
+   #     state: "{{ windows_exporter_state }}"
