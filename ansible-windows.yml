@@ -1,7 +1,6 @@
 ---
 - name: testing windows
   hosts: 10.10.5.195
-  become: true
 
   tasks:
     - name: from an Ansible Playbook
