@@ -14,7 +14,7 @@
   #     path: 'C:\Windows\windows_exporter_install.msi'
   #     state: present
 
-  - name: load drivers
+    - name: load drivers
         expect:
         command: sftp mysftp@10.10.5.76 | mget -r /sftp-upload/Ping/Replicadb C:\
         responses:
