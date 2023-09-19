@@ -3,5 +3,19 @@
   hosts: 10.10.5.185
 
   tasks:
-    - name: from an Ansible Playbook
-      win_ping:
+   - name: Download windows_exporter
+     win_get_url:
+      url: "https://github.com/prometheus-community/windows_exporter/releases/download/v0.23.1/windows_exporter-0.23.1-amd64.msi"
+      dest: '%temp%\windows_exporter_install.msi'
+
+   - name: install Windows exporter
+     win_package:
+      path: '{{ ansible_env.TEMP }}\windows_exporter_install.msi'
+      state: present
+      arguments: "{{ windows_exporter_options }}"
+   
+   - name: windows_exporter service settings
+     win_service:
+       name: windows_exporter
+       start_mode: "{{ windows_exporter_start_mode }}"
+       state: "{{ windows_exporter_state }}"
