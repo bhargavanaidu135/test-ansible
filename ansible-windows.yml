@@ -2,46 +2,5 @@
 - name: testing windows
   hosts: 10.10.5.187
   tasks:
-#     - name: downlod windows exporter
- #      win_command: replicadb --source-connect jdbc:sqlite:/c:\sqlite\Record.db --source-table EXTENSIONSCAN --sink-connect jdbc:mysql://10.10.5.62:3306/testdb?allowLoadLocalInfile=true --sink-user root --sink-table EXTENSIONSCAN_TMP --sink-password 6kt9tz8GlKKX --mode complete
- #      args:
-  #       chdir: C:\ReplicaDB\bin\
-
-   - name: Download windows_exporter
-     win_get_url:
-      url: "https://github.com/prometheus-community/windows_exporter/releases/download/v0.22.0/windows_exporter-0.22.0-386.exe"
-      dest: '%temp%\windows_exporter_install.msi'
-     when: >
-        windows_exporter_version_check.stderr is not defined
-        or windows_exporter_version not in windows_exporter_version_check.stderr
-        or not windows_exporter_installed_check.stat.exists
-     register: windows_exporter_download_check
-
-   - name: install Windows exporter
-     win_package:
-      path: '{{ ansible_env.TEMP }}\windows_exporter_install.msi'
-      state: present
-      arguments: "{{ windows_exporter_options }}"
-     when: >
-      windows_exporter_version_check.stderr is not defined
-      or windows_exporter_version not in windows_exporter_version_check.stderr
-      or not windows_exporter_installed_check.stat.exists
-     register: windows_exporter_install_check
-     notify: restart windows_exporter
-
-   - name: windows_exporter service settings
-     win_service:
-       name: windows_exporter
-       start_mode: "{{ windows_exporter_start_mode }}"
-       state: "{{ windows_exporter_state }}"
-
-   - name: Verify windows_exporter is responding to requests.
-     win_uri:
-        url: http://localhost:9182/
-        return_content: true
-        register: metrics_output
-        failed_when: "'Metrics' not in metrics_output.content"
-     when:
-       - windows_exporter_start_mode != 'disabled'
-       - windows_exporter_start_mode != 'manual'
-       - windows_exporter_state == 'started' or windows_exporter_state == 'restarted'
+    - name: from an Ansible Playbook
+      win_ping:
