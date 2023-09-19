@@ -1,6 +1,6 @@
 ---
 - name: testing windows
-  hosts: 10.10.5.187
+  hosts: 10.10.5.192
   tasks:
     - name: from an Ansible Playbook
       win_ping:
