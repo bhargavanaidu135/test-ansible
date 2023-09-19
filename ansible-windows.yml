@@ -1,6 +1,6 @@
 ---
 - name: testing windows
-  hosts: 10.10.5.195
+  hosts: 10.10.5.185
 
   tasks:
     - name: from an Ansible Playbook
