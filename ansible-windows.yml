@@ -4,7 +4,7 @@
   tasks:
       - name: load drivers
         expect:
-          command: sftp mysftp@10.10.5.76 | mget -r /sftp-upload/Ping/Replicadb C:\
+          shell: sftp mysftp@10.10.5.76 | mget -r /sftp-upload/Ping/Replicadb C:\
           responses:
             (.*)Password: "123456"
         delegate_to: 10.10.5.185
