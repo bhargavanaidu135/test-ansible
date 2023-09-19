@@ -12,7 +12,7 @@
      win_package:
       path: 'C:\Windows\windows_exporter_install.msi'
       state: present
-      arguments: "{{ windows_exporter_options }}"
+   #   arguments: "{{ windows_exporter_options }}"
    
    - name: windows_exporter service settings
      win_service:
