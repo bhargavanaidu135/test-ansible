@@ -4,8 +4,8 @@
   tasks:
     - name: create dir for loading drivers
       win_file:
-        path: C:\kapalya-drivers
-        state: directory
+         path: C:\kapalya-drivers
+         state: directory
     # - name: Transfer files via SFTP
     #   expect:
     #     command: sftp mysftp@10.10.5.76
