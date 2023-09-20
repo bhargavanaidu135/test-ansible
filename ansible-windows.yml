@@ -2,22 +2,32 @@
  - name: testing windows
    hosts: 10.10.5.185
    tasks:  
-    - name: create dir for loading drivers
-      win_file:
-         path: C:\kapalya-drivers
-         state: directory
-    - name: Transfer files via SFTP
-      expect:
-        command: sftp mysftp@10.10.5.76
-        responses:
-          # "(yes/no)?": "yes\n"
-          "password: ": "123456\n"
-        timeout: 30
-        echo: yes
-        spawn: yes
-        commands:
-          - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers"
-          - "quit"
+    - name: Run login command
+      win_command: |
+        cmdkey /add:10.10.5.76 /user:mysftp /pass:123456
+        mstsc /v:10.10.5.185
+      register: login_result
+
+    - name: Print login output
+      debug:
+        var: login_result.stdout_lines
+
+    # - name: create dir for loading drivers
+    #   win_file:
+    #      path: C:\kapalya-drivers
+    #      state: directory
+    # - name: Transfer files via SFTP
+    #   expect:
+    #     command: sftp mysftp@10.10.5.76
+    #     responses:
+    #       # "(yes/no)?": "yes\n"
+    #       "password: ": "123456\n"
+    #     timeout: 30
+    #     echo: yes
+    #     spawn: yes
+    #     commands:
+    #       - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers"
+    #       - "quit"
                  
 ## windows exporter installation
 
