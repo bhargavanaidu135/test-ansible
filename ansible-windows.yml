@@ -2,17 +2,14 @@
  - name: testing windows
    hosts: 10.10.5.185
    tasks: 
-    - name: Run PowerShell script to automate login
+    - name: Run SFTP login command
       win_shell: |
-        $username = "mysftp"
-        $password = ConvertTo-SecureString "123456" -AsPlainText -Force
-        $credential = New-Object System.Management.Automation.PSCredential ($username, $password)
-        Enter-PSSession -ComputerName 10.10.5.76 -Credential $credential
-      register: login_result
+        Start-Process -NoNewWindow -FilePath "C:\path\to\psftp.exe" -ArgumentList "-l mysftp -pw 123456 sftp://10.10.5.76"
+      register: sftp_result
 
-    - name: Print login output
+    - name: Print SFTP output
       debug:
-        var: login_result.stdout_lines
+        var: sftp_result.stdout_lines
 
     # - name: Run login command
     #   win_command: 'cmdkey /add:10.10.5.76 /user:mysftp /pass:123456'
