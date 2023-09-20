@@ -1,16 +1,32 @@
 ---
  - name: testing windows
    hosts: 10.10.5.185
-   tasks:  
+   tasks: 
     - name: Run login command
-      win_command: |
-        cmdkey /add:10.10.5.76 /user:mysftp /pass:123456
-        mstsc /v:10.10.5.185
+      win_command: 'cmdkey /add:10.10.5.76 /user:mysftp /pass:123456'
+      register: cmdkey_result
+
+    - name: Check cmdkey result
+      debug:
+        var: cmdkey_result.stdout_lines
+
+    - name: Connect to the remote host
+      win_command: 'mstsc /v:10.10.5.185'
       register: login_result
 
     - name: Print login output
       debug:
         var: login_result.stdout_lines
+
+    # - name: Run login command
+    #   win_command: |
+    #     cmdkey /add:10.10.5.76 /user:mysftp /pass:123456
+    #     mstsc /v:10.10.5.185
+    #   register: login_result
+
+    # - name: Print login output
+    #   debug:
+    #     var: login_result.stdout_lines
 
     # - name: create dir for loading drivers
     #   win_file:
