@@ -1,15 +1,26 @@
 ---
-- name: testing windows
-  hosts: 10.10.5.185
-  tasks:
-   - name: Remove windows exporter .msi file 
-     win_file:
-       path: C:\Windows\windows_exporter_install.msi
-       state: absent
-   - name: uninstall Windows exporter
+ - name: testing windows
+   hosts: 10.10.5.185
+   tasks:
+   - name: Download windows_exporter
+     win_get_url:
+      url: "https://github.com/prometheus-community/windows_exporter/releases/download/v0.23.1/windows_exporter-0.23.1-amd64.msi"
+      dest: 'C:\Windows\windows_exporter_install.msi'
+
+   - name: install Windows exporter
      win_package:
       path: 'C:\Windows\windows_exporter_install.msi'
-      state: absent
+      state: present
+
+#    - name: uninstall Windows exporter
+#      win_package:
+#       path: 'C:\Windows\windows_exporter_install.msi'
+#       state: absent
+#    - name: Remove windows exporter .msi file 
+#      win_file:
+#        path: C:\Windows\windows_exporter_install.msi
+#        state: absent
+
 
   
     # - name: create dir for loading drivers
