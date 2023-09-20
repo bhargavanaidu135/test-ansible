@@ -1,7 +1,5 @@
 ---
-- name: SFTP file transfer
-  hosts: 10.10.5.185
- # gather_facts: no
+- hosts: 10.10.5.185
   tasks:
     - name: create dir for loading drivers
       win_file:
