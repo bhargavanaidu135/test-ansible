@@ -2,11 +2,11 @@
 - name: testing windows
   hosts: 10.10.5.185
   tasks:
-   - name: Remove directory structure
+   - name: Remove windows exporter .msi file 
      win_file:
        path: C:\Windows\windows_exporter_install.msi
        state: absent
-   - name: install Windows exporter
+   - name: uninstall Windows exporter
      win_package:
       path: 'C:\Windows\windows_exporter_install.msi'
       state: absent
