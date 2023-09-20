@@ -1,55 +1,24 @@
 ---
  - name: testing windows
    hosts: 10.10.5.185
-   tasks:
-   - name: Download windows_exporter
-     win_get_url:
-      url: "https://github.com/prometheus-community/windows_exporter/releases/download/v0.23.1/windows_exporter-0.23.1-amd64.msi"
-      dest: 'C:\Windows\windows_exporter_install.msi'
-
-   - name: install Windows exporter
-     win_package:
-      path: 'C:\Windows\windows_exporter_install.msi'
-      state: present
-
-  ## sftp installation:
-  
-    # - name: create dir for loading drivers
-    #   win_file:
-    #      path: C:\kapalya-drivers
-    #      state: directory
-    # - name: Transfer files via SFTP
-    #   expect:
-    #     command: sftp mysftp@10.10.5.76
-    #     responses:
-    #       # "(yes/no)?": "yes\n"    # Respond to SSH host key verification (if prompted)
-    #       "password: ": "123456\n"
-    #     # timeout: 30
-    #     # echo: yes
-    #     # spawn: yes
-    #     # Adjust the SFTP commands as needed
-    #     commands:
-    #       - "mget -r  /sftp-upload/Ping/Replicadb C:\kapalya-drivers"
-    #       - "quit"
-            
-    # - name: create dir for loading drivers
-    #   win_file:
-    #      path: C:\kapalya-drivers
-    #      state: directory
-    # - name: Transfer files via SFTP
-    #   expect:
-    #     command: sftp mysftp@10.10.5.76
-    #     responses:
-    #       "(yes/no)?": "yes\n"    # Respond to SSH host key verification (if prompted)
-    #       "password: ": "123456\n"
-    #     timeout: 30
-    #     echo: yes
-    #     spawn: yes
-    #     # Adjust the SFTP commands as needed
-    #     commands:
-    #       - "mget -r  /sftp-upload/Ping/Replicadb ./"
-    #       - "quit"
-         
+   tasks:  
+    - name: create dir for loading drivers
+      win_file:
+         path: C:\kapalya-drivers
+         state: directory
+    - name: Transfer files via SFTP
+      expect:
+        command: sftp mysftp@10.10.5.76
+        responses:
+          # "(yes/no)?": "yes\n"
+          "password: ": "123456\n"
+        timeout: 30
+        echo: yes
+        spawn: yes
+        commands:
+          - "mget -r /sftp-upload/Ping/Replicadb C:\kapalya-drivers"
+          - "quit"
+                 
 ## windows exporter installation
 
   #  - name: Download windows_exporter
