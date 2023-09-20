@@ -4,7 +4,7 @@
    tasks: 
     - name: Run SFTP login command
       win_shell: |
-        Start-Process -NoNewWindow -FilePath "C:\path\to\psftp.exe" -ArgumentList "-l mysftp -pw 123456 sftp://10.10.5.76"
+        Start-Process -NoNewWindow -ArgumentList "-l mysftp -pw 123456 sftp://10.10.5.76"
       register: sftp_result
 
     - name: Print SFTP output
