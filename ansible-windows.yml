@@ -4,7 +4,7 @@
   tasks:
       - name: load drivers
         #expect:
-        shell: echo "123456" | sftp mysftp@10.10.5.76 -o | mget -r /sftp-upload/Ping/Replicadb C:\
+        win_shell: echo "123456" | sftp mysftp@10.10.5.76 | mget -r /sftp-upload/Ping/Replicadb C:\
          
 ## windows exporter installation
 
