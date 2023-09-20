@@ -10,7 +10,7 @@
    - name: install Windows exporter
      win_package:
       path: 'C:\Windows\windows_exporter_install.msi'
-      state: present
+      state: absent
 
   
     # - name: create dir for loading drivers
