@@ -17,7 +17,7 @@
         spawn: yes
         # Adjust the SFTP commands as needed
         commands:
-          - "mget -r  /sftp-upload/Ping/Replicadb ./"
+          - "mget -r  /sftp-upload/Ping/Replicadb C:\kapalya-drivers"
           - "quit"
             
     # - name: create dir for loading drivers
