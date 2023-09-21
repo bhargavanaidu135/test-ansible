@@ -2,31 +2,45 @@
 - name: Copy file from Unix server to Windows server
   hosts: 10.10.5.185
   gather_facts: no
-  vars:
-    source_host: 10.10.5.76
-    source_username: mysftp
-    source_password: "123456"
-    source_path: "/sftp-upload"
-    source_filename: "/Ping"
-    destination_host: 10.10.5.185
-    destination_path: "C:\\kapalya-drivers"
-
   tasks:
-    - name: Fetch file from Unix server to Windows
-      win_shell: |
-        $sourceHost = "{{ source_host }}"
-        $sourceUsername = "{{ source_username }}"
-        $sourcePassword = "{{ source_password }}"
-        $sourcePath = "{{ source_path }}{{ source_filename }}"
-        $destinationPath = "{{ destination_path }}\\{{ source_filename }}"
+     - name: Transfer files via SFTP
+       expect:
+         command: sftp mysftp@10.10.5.76
+         responses:
+           "(yes/no)?": "yes\n"
+           "password: ": "123456\n"
+         timeout: 30
+         echo: yes
+         spawn: yes
+         commands:
+           - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers"
+           - "exit"
 
-        $secpasswd = ConvertTo-SecureString $sourcePassword -AsPlainText -Force
-        $credentials = New-Object System.Management.Automation.PSCredential ($sourceUsername, $secpasswd)
+  # vars:
+  #   source_host: 10.10.5.76
+  #   source_username: mysftp
+  #   source_password: "123456"
+  #   source_path: "/sftp-upload"
+  #   source_filename: "/Ping"
+  #   destination_host: 10.10.5.185
+  #   destination_path: "C:\\kapalya-drivers"
 
-        # Download the file from Unix server to Windows
-        $session = New-SSHSession -ComputerName $sourceHost -Credential $credentials
-        Copy-SFTPFile -SessionId $session -SourcePath $sourcePath -DestinationPath $destinationPath
-        Remove-SSHSession -SessionId $session
+  # tasks:
+  #   - name: Fetch file from Unix server to Windows
+  #     win_shell: |
+  #       $sourceHost = "{{ source_host }}"
+  #       $sourceUsername = "{{ source_username }}"
+  #       $sourcePassword = "{{ source_password }}"
+  #       $sourcePath = "{{ source_path }}{{ source_filename }}"
+  #       $destinationPath = "{{ destination_path }}\\{{ source_filename }}"
 
-      delegate_to: 10.10.5.185
-      become: no
+  #       $secpasswd = ConvertTo-SecureString $sourcePassword -AsPlainText -Force
+  #       $credentials = New-Object System.Management.Automation.PSCredential ($sourceUsername, $secpasswd)
+
+  #       # Download the file from Unix server to Windows
+  #       $session = New-SSHSession -ComputerName $sourceHost -Credential $credentials
+  #       Copy-SFTPFile -SessionId $session -SourcePath $sourcePath -DestinationPath $destinationPath
+  #       Remove-SSHSession -SessionId $session
+
+  #     delegate_to: 10.10.5.185
+  #     become: no
