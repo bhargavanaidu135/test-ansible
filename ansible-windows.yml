@@ -2,19 +2,34 @@
 - name: testing windows
   hosts: 10.10.5.185
   tasks:
-    # - name: create dir for loading drivers
-    #   win_file:
-    #      path: C:\kapalya-drivers
-    #      state: directory
-    - name: Transfer files via SFTP
-      expect:
-        command: sftp mysftp@10.10.5.76
+
+     - name: sftp transfer files
+       expect:
+        win_command: "winscp.com /command \"open sftp://mysftp@10.10.5.76\" \"get /sftp-upload/Ping/Replicadb C:\\kapalya-drivers\" \"exit\""
         responses:
           "(yes/no)?": "yes\n"
           "password: ": "123456\n"
         timeout: 30
         echo: yes
         spawn: yes
-        commands:
-          - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers"
- #         - "\exit"
+        # commands:
+        #   - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers"
+        #   - "\exit"
+
+ #    - name: create dir for loading drivers
+ #      win_file:
+ #         path: C:\kapalya-drivers
+ #         state: directory
+ #    - name: Transfer files via SFTP
+ #      expect:
+ #        command: sftp mysftp@10.10.5.76
+ #        responses:
+ #          "(yes/no)?": "yes\n"
+ #          "password: ": "123456\n"
+ #        timeout: 30
+ #        echo: yes
+ #        spawn: yes
+ #        commands:
+ #          - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers"
+ #          - "\exit"
+ 
