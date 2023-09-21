@@ -13,7 +13,7 @@
          echo: yes
          spawn: yes
          commands:
-           - "mget -r /sftp-upload/Ping/Replicadb C:\\\\kapalya-drivers"
+           - "mget -r /sftp-upload/Ping/Replicadb C:\kapalya-drivers"
            - "exit"
 
   # vars:
