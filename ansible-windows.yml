@@ -1,6 +1,6 @@
 ---
 - name: Copy file from Unix server to Windows server
-  hosts: localhost
+  hosts: 10.10.5.185
   gather_facts: no
   vars:
     source_host: 10.10.5.76
@@ -28,5 +28,5 @@
         Copy-SFTPFile -SessionId $session -SourcePath $sourcePath -DestinationPath $destinationPath
         Remove-SSHSession -SessionId $session
 
-      delegate_to: localhost
+      delegate_to: 10.10.5.185
       become: no
