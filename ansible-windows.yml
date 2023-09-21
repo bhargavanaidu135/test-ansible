@@ -31,5 +31,4 @@
  #        commands:
  #          - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers"
  #          - "\exit"
- 
-   # win_command: "winscp /command \"open sftp://mysftp@10.10.5.76\" \"get /sftp-upload/Ping/Replicadb C:\\kapalya-drivers\" \"exit\""
+ # win_command: "winscp /command \"open sftp://mysftp@10.10.5.76\" \"get /sftp-upload/Ping/Replicadb C:\\kapalya-drivers\" \"exit\""
