@@ -1,5 +1,3 @@
-
-
 ---
 - name: Copy file from Unix server to Windows server
   hosts: localhost  # We are running this playbook on the AWX server itself
@@ -32,18 +30,6 @@
 
       delegate_to: localhost
       become: no
-
-
-
-
-
-
-
-
-
-
-
-
 # ---
 # - name: testing windows
 #   hosts: 10.10.5.185
