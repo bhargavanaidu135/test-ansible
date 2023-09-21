@@ -7,8 +7,8 @@
 
     - name: Copy file from Unix server to Windows 10 machine
       win_copy:
-        src: /sftp-upload/Ping/Replicadb
-        dest: C:\\kapalya-drivers
+        src: /sftp-upload/Ping
+        dest: C:\kapalya-drivers
       delegate_to: "{{ ansible_ssh_host }}"
       become: yes
       become_user: mysftp
