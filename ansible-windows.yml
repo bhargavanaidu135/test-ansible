@@ -1,21 +1,67 @@
+
+
 ---
-- name: testing windows
-  hosts: 10.10.5.185
-  gather_facts: no
+- name: Copy file from Unix server to Windows server
+  hosts: localhost  # We are running this playbook on the AWX server itself
+  gather_facts: no  # No need to gather facts on the control machine
+  vars:
+    source_host: 10.10.5.76  # Source Unix server
+    source_username: mysftp
+    source_password: "123456"
+    source_path: "/sftp-upload"
+    source_filename: "/Ping"
+    destination_host: 10.10.5.185  # Destination Windows server
+    destination_path: "C:\\kapalya-drivers"
 
-  tasks:
+  tasks:
+    - name: Fetch file from Unix server to Windows
+      ansible.windows.win_command: |
+        $sourceHost = "{{ source_host }}"
+        $sourceUsername = "{{ source_username }}"
+        $sourcePassword = "{{ source_password }}"
+        $sourcePath = "{{ source_path }}{{ source_filename }}"
+        $destinationPath = "{{ destination_path }}\\{{ source_filename }}"
 
-    - name: Copy file from Unix server to Windows 10 machine
-      win_copy:
-        src: /sftp-data/mysftp/sftp-upload/Ping
-        dest: C:\kapalya-drivers
-      delegate_to: "{{ ansible_ssh_host }}"
-      become: yes
-      become_user: mysftp
-  vars:
-    ansible_ssh_host: 10.10.5.76
-    ansible_ssh_user: mysftp
-    ansible_ssh_pass: 123456
+        $secpasswd = ConvertTo-SecureString $sourcePassword -AsPlainText -Force
+        $credentials = New-Object System.Management.Automation.PSCredential ($sourceUsername, $secpasswd)
+
+        # Download the file from Unix server to Windows
+        $session = New-SSHSession -ComputerName $sourceHost -Credential $credentials
+        Copy-SFTPFile -SessionId $session -SourcePath $sourcePath -DestinationPath $destinationPath
+        Remove-SSHSession -SessionId $session
+
+      delegate_to: localhost
+      become: no
+
+
+
+
+
+
+
+
+
+
+
+
+# ---
+# - name: testing windows
+#   hosts: 10.10.5.185
+#   gather_facts: no
+
+#   tasks:
+
+#     - name: Copy file from Unix server to Windows 10 machine
+#       win_copy:
+#         src: /sftp-data/mysftp/sftp-upload/Ping
+#         dest: C:\kapalya-drivers
+#       delegate_to: "{{ ansible_ssh_host }}"
+#       become: yes
+#       become_user: mysftp
+#   vars:
+#     ansible_ssh_host: 10.10.5.76
+#     ansible_ssh_user: mysftp
+#     ansible_ssh_pass: 123456
 
  #    - name: create dir for loading drivers
  #      win_file:
