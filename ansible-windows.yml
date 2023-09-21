@@ -13,7 +13,7 @@
         spawn: yes
         commands:
           - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers"
-          - "\exit"
+          - "exit"
 
  #    - name: create dir for loading drivers
  #      win_file:
