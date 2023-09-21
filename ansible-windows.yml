@@ -14,7 +14,7 @@
          spawn: yes
          commands:
            - "mget -r /sftp-upload/Ping/Replicadb C:\\kapalya-drivers\"
-           - "exit"
+          # - "exit"
 
   # vars:
   #   source_host: 10.10.5.76
