@@ -13,7 +13,7 @@
 
   tasks:
     - name: Fetch file from Unix server to Windows
-      shell: |
+      win_shell: |
         $sourceHost = "{{ source_host }}"
         $sourceUsername = "{{ source_username }}"
         $sourcePassword = "{{ source_password }}"
