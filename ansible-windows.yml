@@ -1,32 +1,32 @@
 ---
-- name: Copy file from Unix server to Windows server
-  hosts: localhost  # We are running this playbook on the AWX server itself
-  gather_facts: no  # No need to gather facts on the control machine
-  vars:
-    source_host: 10.10.5.76
-    source_username: mysftp
-    source_password: "123456"
-    source_path: "/sftp-upload"
-    source_filename: "/Ping"
-    destination_host: 10.10.5.185
-    destination_path: "C:\\kapalya-drivers"
+- name: Copy file from Unix server to Windows server
+  hosts: localhost
+  gather_facts: no
+  vars:
+    source_host: 10.10.5.76
+    source_username: mysftp
+    source_password: "123456"
+    source_path: "/sftp-upload"
+    source_filename: "/Ping"
+    destination_host: 10.10.5.185
+    destination_path: "C:\\kapalya-drivers"
 
-  tasks:
-    - name: Fetch file from Unix server to Windows
-      ansible.windows.win_command: |
-        $sourceHost = "{{ source_host }}"
-        $sourceUsername = "{{ source_username }}"
-        $sourcePassword = "{{ source_password }}"
-        $sourcePath = "{{ source_path }}{{ source_filename }}"
-        $destinationPath = "{{ destination_path }}\\{{ source_filename }}"
+  tasks:
+    - name: Fetch file from Unix server to Windows
+      ansible.windows.win_shell: |
+        $sourceHost = "{{ source_host }}"
+        $sourceUsername = "{{ source_username }}"
+        $sourcePassword = "{{ source_password }}"
+        $sourcePath = "{{ source_path }}{{ source_filename }}"
+        $destinationPath = "{{ destination_path }}\\{{ source_filename }}"
 
-        $secpasswd = ConvertTo-SecureString $sourcePassword -AsPlainText -Force
-        $credentials = New-Object System.Management.Automation.PSCredential ($sourceUsername, $secpasswd)
+        $secpasswd = ConvertTo-SecureString $sourcePassword -AsPlainText -Force
+        $credentials = New-Object System.Management.Automation.PSCredential ($sourceUsername, $secpasswd)
 
-        # Download the file from Unix server to Windows
-        $session = New-SSHSession -ComputerName $sourceHost -Credential $credentials
-        Copy-SFTPFile -SessionId $session -SourcePath $sourcePath -DestinationPath $destinationPath
-        Remove-SSHSession -SessionId $session
+        # Download the file from Unix server to Windows
+        $session = New-SSHSession -ComputerName $sourceHost -Credential $credentials
+        Copy-SFTPFile -SessionId $session -SourcePath $sourcePath -DestinationPath $destinationPath
+        Remove-SSHSession -SessionId $session
 
-      delegate_to: localhost
-      become: no
+      delegate_to: localhost
+      become: no
