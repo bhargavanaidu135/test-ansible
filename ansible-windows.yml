@@ -1,14 +1,26 @@
 ---
-- hosts: 10.10.5.185
+- name: Run Windows execute.cmd file
+  hosts: 10.10.5.185
+  become_method: runas
+  vars:
+    ansible_become_password: 1qaz2wsx
   tasks:
-    - name: "This should create a bucket"
-      minio_bucket:
-        s3_url: https://10.10.5.76:9001
-        name: test-bucket
-        access_key: admin
-        secret_key: gqfxQz1AiAm
-        state: present
-        policy: read-only
+    - name: Execute .cmd file with password
+      win_command: runas /user:Administrator
+        "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd"
+      become: yes
+      become_user: Administrator
+# ---
+# - hosts: 10.10.5.185
+#   tasks:
+#     - name: "This should create a bucket"
+#       minio_bucket:
+#         s3_url: https://10.10.5.76:9001
+#         name: test-bucket
+#         access_key: admin
+#         secret_key: gqfxQz1AiAm
+#         state: present
+#         policy: read-only
 # ---
 # - name: Copy file from Unix server to Windows server
 #   hosts: 10.10.5.185
