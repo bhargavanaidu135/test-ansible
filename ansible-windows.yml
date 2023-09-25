@@ -1,17 +1,28 @@
 ---
-- name: Copy file from Unix server to Windows server
-  hosts: 10.10.5.185
-  gather_facts: no
+- hosts: 10.10.5.185
   tasks:
-     - name: Transfer files via SFTP
-       expect:
-         command: sftp mysftp@10.10.5.76
-         responses:
-           # "(yes/no)?": "yes\n"
-           "password": "123456\n"
-         timeout: 30
-         echo: yes
-         spawn: yes
-         commands:
-           - "mget -r /sftp-upload/Ping/Replicadb C:\\\\kapalya-drivers\\\\"
-           - "exit"
+    - name: "This should create a bucket"
+      minio_bucket:
+        s3_url: https://10.10.5.76:9001
+        name: test-bucket
+        access_key: admin
+        secret_key: gqfxQz1AiAm
+        state: present
+        policy: read-only
+# ---
+# - name: Copy file from Unix server to Windows server
+#   hosts: 10.10.5.185
+#   gather_facts: no
+#   tasks:
+#      - name: Transfer files via SFTP
+#        expect:
+#          command: sftp mysftp@10.10.5.76
+#          responses:
+#            # "(yes/no)?": "yes\n"
+#            "password": "123456\n"
+#          timeout: 30
+#          echo: yes
+#          spawn: yes
+#          commands:
+#            - "mget -r /sftp-upload/Ping/Replicadb C:\\\\kapalya-drivers\\\\"
+#            - "exit"
