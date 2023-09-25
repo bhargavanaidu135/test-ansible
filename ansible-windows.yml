@@ -10,7 +10,7 @@
         "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd"
       become: yes
       become_user: Administrator
-      Enter the password for Administrator: 1qaz2wsx
+      become_password: 1qaz2wsx
 # ---
 # - hosts: 10.10.5.185
 #   tasks:
