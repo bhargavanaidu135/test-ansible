@@ -2,14 +2,16 @@
 - name: Run Windows execute.cmd file
   hosts: 10.10.5.185
   become_method: runas
+  become: yes
+  become_user: Administrator
   vars:
     ansible_become_password: 1qaz2wsx
   tasks:
     - name: Execute .cmd file with password
-      win_shell: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd"
-      become: yes
-      become_user: Administrator
-      become_password: 1qaz2wsx
+      win_shell: ".\\C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd"
+      # become: yes
+      # become_user: Administrator
+      # become_password: 1qaz2wsx
 # ---
 # - hosts: 10.10.5.185
 #   tasks:
