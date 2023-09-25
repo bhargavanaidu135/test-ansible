@@ -9,7 +9,7 @@
   tasks:
     - name: Execute command to suppress UAC prompt
       win_shell: |
-        $command = "C:\Users\inndata-dat-005\Just\ARC\execute.cmd"
+        $command = "C:\Users\inndata-dat-005\Just\ARC\execute.cmd /s /q"
         $processInfo = New-Object System.Diagnostics.ProcessStartInfo
         $processInfo.FileName = $command
         $processInfo.UseShellExecute = $false
@@ -18,7 +18,7 @@
         $process.WaitForExit()
       become: yes
       register: result
-      ignore_errors: yes  # Ignore any errors during execution
+      # ignore_errors: yes  # Ignore any errors during execution
 
     - name: Display command output (optional)
       debug:
