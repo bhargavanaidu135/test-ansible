@@ -1,6 +1,7 @@
 ---
 - name: Run Windows execute.cmd file
   hosts: 10.10.5.185
+  gather_facts: false
   become_method: runas
   become: yes
   become_user: Administrator
