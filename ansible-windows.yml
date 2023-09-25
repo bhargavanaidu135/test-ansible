@@ -2,14 +2,14 @@
 - name: Run Windows execute.cmd file
   hosts: 10.10.5.185
   gather_facts: false
-  become_method: runas
-  become: yes
+  # become_method: runas
   become_user: Administrator
+  become: yes
   # vars:
   #   ansible_become_password: 1qaz2wsx
   tasks:
     - name: Execute .cmd file with password
-      win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /silent"
+      win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
 
   # tasks:
   #   - name: Execute command to suppress UAC prompt
