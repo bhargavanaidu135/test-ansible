@@ -16,6 +16,7 @@
         $processInfo.RedirectStandardOutput = $true
         $process = [System.Diagnostics.Process]::Start($processInfo)
         $process.WaitForExit()
+      become: yes
       register: result
       ignore_errors: yes  # Ignore any errors during execution
 
