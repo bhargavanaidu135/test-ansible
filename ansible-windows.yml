@@ -8,21 +8,25 @@
     ansible_become_password: 1qaz2wsx
   tasks:
     - name: Execute command to suppress UAC prompt
-      win_shell: |
-        $command = "C:\Users\inndata-dat-005\Just\ARC\execute.cmd /s /q"
-        $processInfo = New-Object System.Diagnostics.ProcessStartInfo
-        $processInfo.FileName = $command
-        $processInfo.UseShellExecute = $false
-        $processInfo.RedirectStandardOutput = $true
-        $process = [System.Diagnostics.Process]::Start($processInfo)
-        $process.WaitForExit()
-      become: yes
-      register: result
-      # ignore_errors: yes  # Ignore any errors during execution
+      win_file: 
+           path: C:\\admintesting
+           state: directory
 
-    - name: Display command output (optional)
-      debug:
-        var: result.stdout_lines
+    #   win_shell: |
+    #     $command = "C:\Users\inndata-dat-005\Just\ARC\execute.cmd /s /q"
+    #     $processInfo = New-Object System.Diagnostics.ProcessStartInfo
+    #     $processInfo.FileName = $command
+    #     $processInfo.UseShellExecute = $false
+    #     $processInfo.RedirectStandardOutput = $true
+    #     $process = [System.Diagnostics.Process]::Start($processInfo)
+    #     $process.WaitForExit()
+    #   become: yes
+    #   register: result
+    #   # ignore_errors: yes  # Ignore any errors during execution
+
+    # - name: Display command output (optional)
+    #   debug:
+    #     var: result.stdout_lines
 
   # tasks:
   #   - name: check connection
