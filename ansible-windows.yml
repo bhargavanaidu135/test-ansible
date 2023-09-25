@@ -1,15 +1,25 @@
 ---
 - name: Run Windows execute.cmd file
   hosts: 10.10.5.185
+  tasks:
+    - name: "This should create a bucket"
+      minio_bucket:
+        s3_url: https://10.10.5.76:9001
+        name: test-bucket
+        access_key: DW1v3EfdBLR0J1GVhdjC
+        secret_key: 5VytN79seVFxeYmAmwLlYUF4O0rp0Hlnex50GyTf
+        state: present
+        policy: read-only
+
   # gather_facts: false
   # become_method: runas
-  become_user: Administrator
-  become: yes
+  # become_user: Administrator
+  # become: yes
   # vars:
   #   ansible_become_password: 1qaz2wsx
-  tasks:
-    - name: Execute .cmd file with password
-      win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
+  # tasks:
+  #   - name: Execute .cmd file with password
+  #     win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
 
   # tasks:
   #   - name: Execute command to suppress UAC prompt
