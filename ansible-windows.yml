@@ -12,7 +12,7 @@
   tasks:
     - name: Execute .cmd file with password
       win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
-      become: true
+
   # gather_facts: false
   # become_method: runas
   # become_user: Administrator
