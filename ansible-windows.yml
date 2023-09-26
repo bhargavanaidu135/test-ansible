@@ -9,9 +9,16 @@
     ansible_become_user: Administrator
     ansible_become_password: 1qaz2wsx
     ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+  
   tasks:
-    - name: Execute .cmd file with password
-      win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
+   - name: Confirm before executing .cmd file
+      prompt: 
+        prompt: "Do you want to execute the .cmd file? (yes/no)"
+        private: no
+      register: user_confirmation
+   - name: Execute .cmd file with password
+     win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
+     when: user_confirmation.user_input == 'yes'
 
   # gather_facts: false
   # become_method: runas
