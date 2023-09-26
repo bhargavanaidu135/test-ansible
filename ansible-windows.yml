@@ -12,10 +12,10 @@
   
   tasks:
    - name: Confirm before executing .cmd file
-      prompt: 
+     prompt: 
         prompt: "Do you want to execute the .cmd file? (yes/no)"
         private: no
-      register: user_confirmation
+     register: user_confirmation
    - name: Execute .cmd file with password
      win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
      when: user_confirmation.user_input == 'yes'
