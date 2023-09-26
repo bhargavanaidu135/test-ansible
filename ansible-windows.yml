@@ -2,7 +2,7 @@
 - name: Run Windows execute.cmd file
   hosts: 10.10.5.185
   become: true
-  become_user: Administrator
+#  become_user: Administrator
   tasks:
     - name: Execute .cmd file with password
       win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
