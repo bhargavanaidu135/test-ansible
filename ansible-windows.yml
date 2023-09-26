@@ -1,15 +1,11 @@
 ---
 - name: Run Windows execute.cmd file
   hosts: 10.10.5.185
+  become: true
+  become_user: Administrator
   tasks:
-    - name: "This should create a bucket"
-      minio_bucket:
-        s3_url: https://10.10.5.76:9001
-        name: test-bucket
-        access_key: DW1v3EfdBLR0J1GVhdjC
-        secret_key: 5VytN79seVFxeYmAmwLlYUF4O0rp0Hlnex50GyTf
-        state: present
-        policy: read-only
+    - name: Execute .cmd file with password
+      win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
 
   # gather_facts: false
   # become_method: runas
@@ -20,24 +16,6 @@
   # tasks:
   #   - name: Execute .cmd file with password
   #     win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /s /q"
-
-  # tasks:
-  #   - name: Execute command to suppress UAC prompt
-  #     win_shell: |
-  #       $command = "C:\Users\inndata-dat-005\Just\ARC\execute.cmd /s /q"
-  #       $processInfo = New-Object System.Diagnostics.ProcessStartInfo
-  #       $processInfo.FileName = $command
-  #       $processInfo.UseShellExecute = $false
-  #       $processInfo.RedirectStandardOutput = $true
-  #       $process = [System.Diagnostics.Process]::Start($processInfo)
-  #       $process.WaitForExit()
-  #     become: yes
-  #     register: result
-  #     # ignore_errors: yes  # Ignore any errors during execution
-
-  #   - name: Display command output (optional)
-  #     debug:
-  #       var: result.stdout_lines
 
   # tasks:
   #   - name: check connection
@@ -61,20 +39,16 @@
   #   - name: Display command output (optional)
   #     debug:
   #       var: result.stdout_lines
-  # tasks:
-  #   - name: Execute .cmd file with password
-  #     win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd /silent"
-# ---
-# - hosts: 10.10.5.185
+
 #   tasks:
-#     - name: "This should create a bucket"
-#       minio_bucket:
-#         s3_url: https://10.10.5.76:9001
-#         name: test-bucket
-#         access_key: admin
-#         secret_key: gqfxQz1AiAm
-#         state: present
-#         policy: read-only
+    # - name: "This should create a bucket"
+    #   minio_bucket:
+    #     s3_url: https://10.10.5.76:9001
+    #     name: test-bucket
+    #     access_key: DW1v3EfdBLR0J1GVhdjC
+    #     secret_key: 5VytN79seVFxeYmAmwLlYUF4O0rp0Hlnex50GyTf
+    #     state: present
+    #     policy: read-only
 # ---
 # - name: Copy file from Unix server to Windows server
 #   hosts: 10.10.5.185
