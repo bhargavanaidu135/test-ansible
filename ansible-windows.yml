@@ -11,17 +11,22 @@
       win_shell:
         path: C:\Users\inndata-dat-005\Just\ARC\execute.bat
         _raw_params: C:\Users\inndata-dat-005\Just\ARC\execute.bat
-        args:
-          executable: cmd
-      register: cmd_result
-    - name: Exit playbook if .bat file executed successfully
-      meta: end_play
-      when: cmd_result.rc == 0
 
-    - name: Fail task if .bat file execution failed
-      fail:
-        msg: "Failed to execute the .bat file"
-      when: cmd_result.rc != 0
+      async: 30  # Set the timeout to 30 seconds
+      poll: 0
+      register: cmd_result
+
+    - name: Wait for the task to complete (max 30 seconds)
+      async_status:
+        jid: "{{ cmd_result.ansible_job_id }}"
+      register: job_result
+      until: job_result.finished
+      retries: 2
+      delay: 1
+
+    - name: Display task result
+      debug:
+        var: cmd_result
       # - name: Display cmd_result
       # debug:
       #   var: cmd_result
