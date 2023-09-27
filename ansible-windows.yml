@@ -12,7 +12,7 @@
   
   tasks:
    - name: Execute .cmd file with password
-     win_command: Start-Process -FilePath "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.bat"
+     win_command: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.bat"
   #        path: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.bat"
    #        state: present
 
