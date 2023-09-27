@@ -12,7 +12,7 @@
         path: C:\Users\inndata-dat-005\Just\ARC\execute.bat
         _raw_params: C:\Users\inndata-dat-005\Just\ARC\execute.bat
 
-      async: 30  # Set the timeout to 30 seconds
+      async: 10  # Set the timeout to 30 seconds
       poll: 0
       register: cmd_result
 
@@ -22,7 +22,7 @@
       register: job_result
       until: job_result.finished
       retries: 2
-      delay: 1
+      delay: 0
 
     - name: Display task result
       debug:
