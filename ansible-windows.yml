@@ -3,18 +3,17 @@
   hosts: 10.10.5.185
 #  become: true
 #  become_user: Administrator
-  vars:
-    ansible_become: true
-    ansible_become_method: runas
-    ansible_become_user: Administrator
-    ansible_become_password: 1qaz2wsx
-    ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-  
+  # vars:
+  #   ansible_become: true
+  #   ansible_become_method: runas
+  #   ansible_become_user: Administrator
+  #   ansible_become_password: 1qaz2wsx
+  #   ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only  
   tasks:
    - name: Execute .cmd file with password
      win_command: C:\Users\inndata-dat-005\Just\ARC\execute.bat
   #        path: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.bat"
-   #        state: present
+   #       state: present
 
   # gather_facts: false
   # become_method: runas
