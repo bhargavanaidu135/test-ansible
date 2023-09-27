@@ -12,8 +12,9 @@
   
   tasks:
    - name: Execute .cmd file with password
-     win_package: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd"
-     state: present
+     win_package: 
+           path: "C:\\Users\\inndata-dat-005\\Just\\ARC\\execute.cmd"
+           state: present
 
   # gather_facts: false
   # become_method: runas
