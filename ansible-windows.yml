@@ -6,13 +6,6 @@
     ansible_become_method: runas
     ansible_become_user: Administrator
     ansible_become_password: 1qaz2wsx
-#  become_user: Administrator
-  # vars:
-  #   ansible_become: true
-  #   ansible_become_method: runas
-  #   ansible_become_user: Administrator
-  #   ansible_become_password: 1qaz2wsx
-  #   ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only  
   tasks:
    - name: Execute .cmd file with password
      win_shell:                              
