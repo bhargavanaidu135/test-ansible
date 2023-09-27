@@ -9,8 +9,8 @@
   tasks:
     - name: Execute .cmd file with password
       win_shell:
-        path: C:\Users\inndata-dat-005\Just\ARC\execute.bat
-        _raw_params: "yes\n"
+        path: C:\Users\inndata-dat-005\Just\ARC\
+        _raw_params: "execute.bat"
       register: cmd_result
 
     - name: Display cmd_result
