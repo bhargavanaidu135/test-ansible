@@ -16,7 +16,7 @@
   tasks:
    - name: Execute .cmd file with password
      win_shell:                              
-        path: "C:\Users\inndata-dat-005\Just\ARC\execute.bat"
+        path: C:\Users\inndata-dat-005\Just\ARC\execute.bat
         state: present
     #C:\Users\inndata-dat-005\Just\ARC\execute.bat    
   # gather_facts: false
