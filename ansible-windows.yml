@@ -2,6 +2,7 @@
 - name: Run Windows execute.cmd file
   hosts: 10.10.5.185
   become_method: runas
+  become_user: Administrator
 #  become: true
 #  become_user: Administrator
   # vars:
