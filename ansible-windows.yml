@@ -7,10 +7,16 @@
     ansible_become_user: Administrator
     ansible_become_password: 1qaz2wsx
   tasks:
-   - name: Execute .cmd file with password
-     win_shell:                              
+    - name: Execute .cmd file with password
+      win_shell:
         path: C:\Users\inndata-dat-005\Just\ARC\execute.bat
         _raw_params: ""
+      register: cmd_result
+
+    - name: Display cmd_result
+      debug:
+        var: cmd_result
+
         # state: present
     #C:\Users\inndata-dat-005\Just\ARC\execute.bat    
   # gather_facts: false
