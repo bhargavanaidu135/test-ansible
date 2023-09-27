@@ -8,9 +8,9 @@
   #   ansible_become_password: 1qaz2wsx
   tasks:
     - name: Execute .cmd file with password
-      win_shell:
+      win_shell: C:\Users\inndata-dat-005\Just\ARC\execute.bat
         # path: C:\Users\inndata-dat-005\Just\ARC\execute.bat
-        _raw_params: C:\Users\inndata-dat-005\Just\ARC\execute.bat
+        # _raw_params: C:\Users\inndata-dat-005\Just\ARC\execute.bat
 
       async: 5
       poll: 0
