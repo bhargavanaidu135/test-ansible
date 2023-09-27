@@ -1,7 +1,7 @@
 ---
 - name: Run Windows execute.cmd file
   hosts: 10.10.5.185
-  become: true
+#  become: true
 #  become_user: Administrator
   vars:
     ansible_become: true
