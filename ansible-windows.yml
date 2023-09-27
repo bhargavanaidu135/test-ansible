@@ -10,7 +10,7 @@
     - name: Execute .cmd file with password
       win_shell:
         path: C:\Users\inndata-dat-005\Just\ARC\execute.bat
-        _raw_params: "yes"
+        _raw_params: "yes\n"
       register: cmd_result
 
     - name: Display cmd_result
