@@ -11,7 +11,7 @@
      win_shell:                              
         path: C:\Users\inndata-dat-005\Just\ARC\execute.bat
         _raw_params: ""
-        state: present
+        # state: present
     #C:\Users\inndata-dat-005\Just\ARC\execute.bat    
   # gather_facts: false
   # become_method: runas
