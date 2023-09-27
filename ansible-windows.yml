@@ -14,10 +14,17 @@
         args:
           executable: cmd
       register: cmd_result
+    - name: Exit playbook if .bat file executed successfully
+      meta: end_play
+      when: cmd_result.rc == 0
 
-    - name: Display cmd_result
-      debug:
-        var: cmd_result
+    - name: Fail task if .bat file execution failed
+      fail:
+        msg: "Failed to execute the .bat file"
+      when: cmd_result.rc != 0
+      # - name: Display cmd_result
+      # debug:
+      #   var: cmd_result
 
         # state: present
     #C:\Users\inndata-dat-005\Just\ARC\execute.bat    
