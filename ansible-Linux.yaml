@@ -1,0 +1,42 @@
+---
+- name: setup httpd webserver
+  hosts: web_servers
+  become_user: root
+  become: yes
+
+  tasks:
+    - name: isntall httpd
+      yum:
+         name: httpd
+         state: latest
+      when: ansible_distribution == "Amazon" or ansible_distribution == "CentOS"
+
+    - name: start httpd
+      service:
+          name: httpd
+          state: started
+      when: ansible_distribution == "Amazon" or ansible_distribution == "CentOS"
+
+    - name: enable httpd
+      service:
+          name: httpd
+          enabled: yes
+      when: ansible_distribution == "Amazon" or ansible_distribution == "CentOS"
+
+    - name: isntall apache2
+      apt:
+         name: apache2
+         state: latest
+      when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+    - name: start apache2
+      service:
+          name: apache2
+          state: started
+      when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+    - name: enable apache2
+      service:
+          name: apache2
+          enabled: yes
+      when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
